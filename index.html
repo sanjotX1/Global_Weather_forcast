@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Weather Forecast</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🌍 Global Weather Forecast</h1>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 10px;">Get accurate weather updates for any location worldwide</p>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('location')" id="tabLocation">
+                📍 My Location
+            </button>
+            <button class="tab" onclick="switchTab('search')" id="tabSearch">
+                🔍 Search Location
+            </button>
+        </div>
+
+        <!-- Page 1: My Location -->
+        <div id="locationPage" class="page active">
+            <div class="info-box">
+                📍 Enable location access to see your local weather. Click the button below to get started.
+            </div>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <button class="btn-location" onclick="getMyLocation()">📍 Get My Weather</button>
+            </div>
+            <div id="locationError" class="error-container"></div>
+            <div id="locationLoading" class="loading-container"></div>
+            <div id="locationWeather" class="weather-container"></div>
+        </div>
+
+        <!-- Page 2: Search Location -->
+        <div id="searchPage" class="page">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search any city worldwide (e.g., London, Tokyo, Baramulla)"
+                    onkeyup="handleSearchInput()"
+                >
+                <div id="autocompleteList" class="autocomplete-list"></div>
+                <button class="btn-search" onclick="searchWeather()">Search</button>
+            </div>
+
+            <div id="favoritesContainer" class="favorites-container"></div>
+            <div id="searchError" class="error-container"></div>
+            <div id="searchLoading" class="loading-container"></div>
+            <div id="searchWeather" class="weather-container"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer style="text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p>Data provided by OpenWeatherMap API | Temperature in °C</p>
+            <p>Last updated: <span id="lastUpdate">--:--</span></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
